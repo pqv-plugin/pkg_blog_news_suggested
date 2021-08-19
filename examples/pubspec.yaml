@@ -23,6 +23,7 @@ environment:
 dependencies:
   pkg_blog_news_suggested:
     path: ../
+  responsive_grid: ^2.0.0
 
   flutter:
     sdk: flutter
