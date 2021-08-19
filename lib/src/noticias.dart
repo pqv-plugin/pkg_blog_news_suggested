@@ -20,11 +20,12 @@ class Noticias extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
-            border: Border.all(color: Colors.grey),
-            color: Colors.white),
+          borderRadius: BorderRadius.circular(3),
+          border: Border.all(color: Colors.grey),
+          color: Colors.white,
+        ),
         padding: EdgeInsets.all(16),
-        child: ListView(
+        child: Wrap(
           children: [
             Align(
               child: Container(

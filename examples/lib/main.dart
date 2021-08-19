@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
       debugShowCheckedModeBanner: false,
@@ -27,12 +27,22 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-class _MyHomePageState extends State<MyHomePage> {
 
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    //? Scaffold tem cor default de background
+    //? Scaffold -> vai na aplicação e não no componente
     return Scaffold(
-      body: MyContainerExample(),
+      body: SuggestedNews(
+        data: [{
+          'title': 'Chuva',
+          'description': 'Chuva forte no brasil',
+          'image': 'image',
+          'link': 'link'
+        }],
+        title: 'news_suggested',
+      ),
     );
   }
 }
