@@ -34,14 +34,39 @@ class _MyHomePageState extends State<MyHomePage> {
     //? Scaffold tem cor default de background
     //? Scaffold -> vai na aplicação e não no componente
     return Scaffold(
-      body: SuggestedNews(
-        data: [{
-          'title': 'Chuva',
-          'description': 'Chuva forte no brasil',
-          'image': 'image',
-          'link': 'link'
-        }],
-        title: 'news_suggested',
+      body: BlogSuggestedNews(
+        title: 'Notícias Sugeridas',
+        maxNewsShow: 4,
+        onDontShowMe: () {
+          print('ON DONT SHOW ME');
+        },
+        data: [
+          {
+            'title': 'Chuva',
+            'description': 'Chuva forte no brasil',
+            'image': 'https://dummyimage.com/800x800/dee2e6/ccc',
+            'link': 'link',
+          },
+          {
+            'title': 'Sol',
+            'description': 'Chuva forte no brasil',
+            'image': 'https://dummyimage.com/800x800/dee2e6/ccc',
+            'link': 'link',
+          },
+          {
+            'title': 'Terra',
+            'description': 'Chuva forte no brasil',
+            'image': 'https://dummyimage.com/800x800/dee2e6/ccc',
+            'link': 'link',
+          },
+          {
+            'title': 'Água',
+            'description':
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ',
+            'image': 'https://dummyimage.com/800x800/dee2e6/ccc',
+            'link': 'link',
+          }
+        ],
       ),
     );
   }
