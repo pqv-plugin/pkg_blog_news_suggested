@@ -21,7 +21,7 @@ class BlogSuggestedNewsItem extends StatelessWidget {
     );
   }
 
-  //TODO:: Implementar Stile
+  //TODO:: Implementar Style
   //TODO:: Implementar Theme
   //TODO:: Separar componentes reutilizaveis (image/text/title)
   Container buildSM() {
