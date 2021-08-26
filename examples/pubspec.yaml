@@ -21,9 +21,11 @@ environment:
   sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
+  get: ^4.3.8
+  responsive_grid: ^2.0.0
+
   pkg_blog_news_suggested:
     path: ../
-  responsive_grid: ^2.0.0
 
   flutter:
     sdk: flutter

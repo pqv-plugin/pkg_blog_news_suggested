@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pkg_blog_news_suggested/pkg/blog_news/blog_news_model.dart';
+import 'package:pkg_blog_news_suggested/pkg/url_link.dart';
 
 class BlogSuggestedNewsItem extends StatelessWidget {
   final BlogNewsModel model;
@@ -21,6 +22,7 @@ class BlogSuggestedNewsItem extends StatelessWidget {
 
   //TODO:: Implementar Style
   //TODO:: Implementar Theme
+  //TODO:: Implementar TransLate
   //TODO:: Separar componentes reutilizaveis (image/text/title)
   Container layoutA(BoxConstraints constrains) {
     return Container(
@@ -96,14 +98,11 @@ class BlogSuggestedNewsItem extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
         ),
-        SizedBox(height: 2),
-        TextButton(
-          onPressed: () {},
-          child: Text(
-            'Veja o mais recente',
-            style: TextStyle(fontSize: 10),
-          ),
-        ),
+        SizedBox(height: 10),
+        UrlLink(
+          text: 'Veja o mais recente',
+          url: 'https://docs.flutter.io/flutter/services/UrlLauncher-class.html',
+        )
       ],
     );
   }
