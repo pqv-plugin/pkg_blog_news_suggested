@@ -9,13 +9,11 @@ class BlogSuggestedNewsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (coxtext, constrains) {
-        print('---------------------->>>>');
-        print(constrains.maxWidth);
+      builder: (BuildContext coxtext, BoxConstraints constrains) {
         if (constrains.maxWidth > 270) {
-          return buildSM();
+          return layoutA(constrains);
         } else {
-          return buildMD();
+          return layoutB(constrains);
         }
       },
     );
@@ -24,7 +22,7 @@ class BlogSuggestedNewsItem extends StatelessWidget {
   //TODO:: Implementar Style
   //TODO:: Implementar Theme
   //TODO:: Separar componentes reutilizaveis (image/text/title)
-  Container buildSM() {
+  Container layoutA(BoxConstraints constrains) {
     return Container(
       margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
       decoration: BoxDecoration(
@@ -32,131 +30,81 @@ class BlogSuggestedNewsItem extends StatelessWidget {
         color: Colors.lightGreenAccent.withOpacity(0.1),
       ),
       padding: EdgeInsets.all(14),
-      child: Column(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 80,
             alignment: Alignment.topLeft,
             child: Image.network('${this.model.image}'),
           ),
-          SizedBox(
-            height: 15,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              child: Text(
-                this.model.title.toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(this.model.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14), textAlign: TextAlign.left),
-          ),
-          SizedBox(
-            height: 3,
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              this.model.description,
-              style: TextStyle(fontSize: 10),
-            ),
-          ),
-          SizedBox(
-            height: 2,
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Veja o mais recente',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ),
-            ),
-          ),
+          SizedBox(width: 15),
+          Expanded(child: buildText())
         ],
       ),
     );
   }
 
-  Container buildMD() {
+  Container layoutB(BoxConstraints constrains) {
     return Container(
       margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
-        color: Colors.yellow.withOpacity(0.5),
+        color: Colors.pink.withOpacity(0.5),
       ),
       padding: EdgeInsets.all(14),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 80,
             alignment: Alignment.topLeft,
             child: Image.network('${this.model.image}'),
           ),
-          SizedBox(
-            height: 15,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              child: Text(
-                this.model.title.toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(this.model.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14), textAlign: TextAlign.left),
-          ),
-          SizedBox(
-            height: 3,
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              this.model.description,
-              style: TextStyle(fontSize: 10),
-            ),
-          ),
-          SizedBox(
-            height: 2,
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Veja o mais recente',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ),
-            ),
-          ),
+          SizedBox(height: 15),
+          buildText()
         ],
       ),
+    );
+  }
+
+  Column buildText() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          this.model.title.toUpperCase(),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 10,
+            color: Colors.grey,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          this.model.title,
+          maxLines: 1,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 3),
+        SizedBox(
+          height: 60,
+          child: Text(
+            this.model.description,
+            maxLines: 3,
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
+        SizedBox(height: 2),
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            'Veja o mais recente',
+            style: TextStyle(fontSize: 10),
+          ),
+        ),
+      ],
     );
   }
 }

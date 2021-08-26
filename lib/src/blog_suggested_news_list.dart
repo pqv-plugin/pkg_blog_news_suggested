@@ -33,7 +33,6 @@ class BlogSuggestedNewsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     return FutureBuilder(
       future: _future(data),
       builder: (context, snapshot) {
