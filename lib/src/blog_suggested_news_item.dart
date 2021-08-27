@@ -1,11 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pkg_blog_news_suggested/pkg/blog_news/blog_news_model.dart';
 import 'package:pkg_blog_news_suggested/pkg/url_link.dart';
+import 'package:url_launcher/url_launcher.dart' as Launcher;
 
 class BlogSuggestedNewsItem extends StatelessWidget {
   final BlogNewsModel model;
 
-  const BlogSuggestedNewsItem(this.model);
+  BlogSuggestedNewsItem(this.model);
+
+  //========================================
+  // isHover
+  //========================================
+  final Rx<bool> _isHover = false.obs;
+
+  set isHover(bool value) => _isHover.value = value;
+
+  bool get isHover => _isHover.value;
+
+  final List<BoxShadow> boxShadow = [
+    BoxShadow(
+      color: Colors.black.withOpacity(0.1),
+      spreadRadius: 0,
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ];
+  final List<BoxShadow> boxShadowReset = [];
+
+  void _launch(String url) async {
+    if (await Launcher.canLaunch(url)) {
+      await Launcher.launch(
+        url,
+        forceWebView: true,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,48 +54,72 @@ class BlogSuggestedNewsItem extends StatelessWidget {
   //TODO:: Implementar Theme
   //TODO:: Implementar TransLate
   //TODO:: Separar componentes reutilizaveis (image/text/title)
-  Container layoutA(BoxConstraints constrains) {
-    return Container(
-      margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        color: Colors.lightGreenAccent.withOpacity(0.1),
-      ),
-      padding: EdgeInsets.all(14),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 80,
-            alignment: Alignment.topLeft,
-            child: Image.network('${this.model.image}'),
+  InkWell layoutA(BoxConstraints constrains) {
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onHover: (bool value) => isHover = value,
+      onTap: () {
+        _launch('https://medium.com/@mx_tino/flutter-themes-9cebc0fecd1d');
+      },
+      child: Obx(
+        () => Container(
+          margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            color: Colors.white,
+            boxShadow: isHover ? boxShadow : boxShadowReset,
           ),
-          SizedBox(width: 15),
-          Expanded(child: buildText())
-        ],
+          padding: EdgeInsets.all(14),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 80,
+                alignment: Alignment.topLeft,
+                child: Image.network('${this.model.image}'),
+              ),
+              SizedBox(width: 15),
+              Expanded(child: buildText())
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Container layoutB(BoxConstraints constrains) {
-    return Container(
-      margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        color: Colors.pink.withOpacity(0.5),
-      ),
-      padding: EdgeInsets.all(14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 80,
-            alignment: Alignment.topLeft,
-            child: Image.network('${this.model.image}'),
+  InkWell layoutB(BoxConstraints constrains) {
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onHover: (bool value) => isHover = value,
+      onTap: () {
+        _launch('https://medium.com/@mx_tino/flutter-themes-9cebc0fecd1d');
+      },
+      child: Obx(
+        () => Container(
+          margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            color: Colors.white,
+            boxShadow: isHover ? boxShadow : boxShadowReset,
           ),
-          SizedBox(height: 15),
-          buildText()
-        ],
+          padding: EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 80,
+                alignment: Alignment.topLeft,
+                child: Image.network('${this.model.image}'),
+              ),
+              SizedBox(height: 15),
+              buildText()
+            ],
+          ),
+        ),
       ),
     );
   }

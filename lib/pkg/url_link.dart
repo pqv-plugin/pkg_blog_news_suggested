@@ -41,6 +41,8 @@ class UrlLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onHover: (bool value) => isHover = value,
       onTap: () => _launch(url),
       child: Obx(() => Text(text,
