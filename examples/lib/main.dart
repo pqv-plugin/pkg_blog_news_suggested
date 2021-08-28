@@ -1,3 +1,4 @@
+import 'package:examples/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,14 +17,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => ExamplePage()),
       ],
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
-        ).copyWith(
-          secondary: Colors.green,
-        ),
-        textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.purple)),
-      ),
+      theme: appThemeData,
     );
   }
 }

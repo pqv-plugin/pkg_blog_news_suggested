@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pkg_blog_news_suggested/pkg/condition/condition_builder.dart';
 import 'package:pkg_blog_news_suggested/src/blog_suggested_news_list.dart';
 
@@ -24,20 +25,27 @@ class BlogSuggestedNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Get.theme.textTheme;
     return Padding(
-      padding: const EdgeInsets.all(5),
+      padding: EdgeInsets.only(left: 5, right: 5),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(5),
+            padding: EdgeInsets.only(left: 5, right: 5),
             child: Row(children: [
-              Text(title),
+              Text(title, style: textTheme.headline6!.copyWith(fontSize: 15, fontWeight: FontWeight.w700)),
               Spacer(),
               ConditionBuilder(
                 condition: onDontShowMe != null,
                 child: () => TextButton(
                   onPressed: onDontShowMe,
-                  child: Text('Dont show me again'),
+                  child: Text('Dont show me againx'),
+                  style: TextButton.styleFrom(textStyle: TextStyle(fontSize: 10)),
+                  /*style: ButtonStyle(
+                    textStyle: MaterialStateProperty.all(TextStyle(color: Colors.green)),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                  ),*/
+                  //style: TextButton.styleFrom(primary: Colors.green),
                 ),
               ),
             ]),

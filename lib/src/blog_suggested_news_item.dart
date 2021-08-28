@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pkg_blog_news_suggested/pkg/blog_news/blog_news_model.dart';
@@ -37,6 +39,14 @@ class BlogSuggestedNewsItem extends StatelessWidget {
     }
   }
 
+  int doResize(double width, double maxWidth) {
+    width = min(width, maxWidth);
+    double size = width * (10 / maxWidth);
+    double resize = size * 100 / 16;
+    size = (resize * 100) / 100;
+    return resize.round();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -55,6 +65,11 @@ class BlogSuggestedNewsItem extends StatelessWidget {
   //TODO:: Implementar TransLate
   //TODO:: Separar componentes reutilizaveis (image/text/title)
   InkWell layoutA(BoxConstraints constrains) {
+    CardTheme theme = Get.theme.cardTheme;
+    RoundedRectangleBorder shape = Get.theme.cardTheme.shape as RoundedRectangleBorder;
+
+    Color primaryColor = Get.theme.accentColor;
+
     return InkWell(
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
@@ -65,10 +80,10 @@ class BlogSuggestedNewsItem extends StatelessWidget {
       },
       child: Obx(
         () => Container(
-          margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
+          margin: EdgeInsets.only(left: 5, right: 5, bottom: 5),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            color: Colors.white,
+            border: Border.all(color: shape.side.color),
+            color: theme.color,
             boxShadow: isHover ? boxShadow : boxShadowReset,
           ),
           padding: EdgeInsets.all(14),
@@ -100,7 +115,7 @@ class BlogSuggestedNewsItem extends StatelessWidget {
       },
       child: Obx(
         () => Container(
-          margin: EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 5),
+          margin: EdgeInsets.only(left: 5, right: 5, bottom: 5),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             color: Colors.white,
@@ -125,23 +140,21 @@ class BlogSuggestedNewsItem extends StatelessWidget {
   }
 
   Column buildText() {
+    final TextTheme textTheme = Get.theme.textTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           this.model.title.toUpperCase(),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 10,
-            color: Colors.grey,
-          ),
+          style: textTheme.overline,
+          maxLines: 1,
         ),
         SizedBox(height: 10),
         Text(
           this.model.title,
           maxLines: 1,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-          textAlign: TextAlign.left,
+          style: textTheme.headline6!.copyWith(fontSize: 10),
         ),
         SizedBox(height: 3),
         SizedBox(
