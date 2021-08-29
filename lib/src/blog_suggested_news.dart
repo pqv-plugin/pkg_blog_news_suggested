@@ -50,7 +50,7 @@ class BlogSuggestedNews extends StatelessWidget {
                 condition: onDontShowMe != null,
                 child: () => TextButton(
                   onPressed: onDontShowMe,
-                  child: Text('Dont show me againx'),
+                  child: Text('DONT_SHOW_ME_AGAIN'.tr),
                   style: TextButton.styleFrom(textStyle: TextStyle(fontSize: 10)),
                   /*style: ButtonStyle(
                     textStyle: MaterialStateProperty.all(TextStyle(color: Colors.green)),

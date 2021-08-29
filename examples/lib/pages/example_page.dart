@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pkg_blog_news_suggested/package.dart';
 import 'package:pkg_blog_news_suggested/pkg/blog_news/blog_news_model.dart';
 
@@ -46,19 +47,36 @@ class ExamplePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlogSuggestedNews(
-        title: 'Notícias sugeridas para você',
-        maxNewsShow: 4,
-        onDontShowMe: () {
-          print('ON DONT SHOW ME');
-        },
-        onLatestNewsShow: (BlogNewsModel newsModel) {
-          print('LATEST_NEWS-->>$newsModel');
-        },
-        onNewsShow: (BlogNewsModel newsModel) {
-          print('NEWS-->>$newsModel');
-        },
-        future: _future(),
+      body: Column(
+        children: [
+          BlogSuggestedNews(
+            title: 'SUGGESTED_NEWS_FOR_YOU'.tr,
+            maxNewsShow: 4,
+            onDontShowMe: () {
+              print('ON DONT SHOW ME');
+            },
+            onLatestNewsShow: (BlogNewsModel newsModel) {
+              print('LATEST_NEWS-->>$newsModel');
+            },
+            onNewsShow: (BlogNewsModel newsModel) {
+              print('NEWS-->>$newsModel');
+            },
+            future: _future(),
+          ),
+          SizedBox(height: 20),
+          TextButton(
+            child: Text('Mudar idioma'),
+            onPressed: () {
+              Locale? locale;
+              if (Get.locale.toString() == "en_US") {
+                locale = Locale('pt', 'BR');
+              } else {
+                locale = Locale('en', 'US');
+              }
+              Get.updateLocale(locale);
+            },
+          )
+        ],
       ),
     );
   }

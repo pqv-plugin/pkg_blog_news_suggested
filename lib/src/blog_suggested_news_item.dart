@@ -161,7 +161,7 @@ class BlogSuggestedNewsItem extends StatelessWidget {
         ),
         SizedBox(height: 10),
         LatestNewsLink(
-          text: 'Veja as mais recentes',
+          text: 'SEE_THE_LATEST'.tr,
           onClick: () {
             onNewsShow(model);
           },

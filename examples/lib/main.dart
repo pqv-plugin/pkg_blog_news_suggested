@@ -1,4 +1,5 @@
 import 'package:examples/app_theme.dart';
+import 'package:examples/pages/example_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/', page: () => ExamplePage()),
       ],
       theme: appThemeData,
+      translations: ExampleTranslations(), // your translations
+      locale: Locale('en', 'US'), // translations will be displayed in that locale
+      fallbackLocale: Locale('en', 'UK'), // specify the fallback locale in case an invalid locale is selected.
     );
   }
 }
