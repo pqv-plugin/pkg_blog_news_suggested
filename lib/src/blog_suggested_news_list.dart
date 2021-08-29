@@ -39,10 +39,11 @@ class BlogSuggestedNewsList extends StatelessWidget {
         if (snapshot.hasData) {
           return ResponsiveGridRow(children: snapshot.data as List<ResponsiveGridCol>);
         } else {
-          return Container(
-            width: 100,
-            height: 100,
-            color: Colors.green,
+          return Theme(
+            data: Theme.of(context).copyWith(accentColor: Colors.yellow),
+            child: CircularProgressIndicator(
+              color: Colors.lightGreenAccent,
+            ),
           );
         }
       },

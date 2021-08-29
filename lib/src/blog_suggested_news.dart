@@ -7,18 +7,17 @@ class BlogSuggestedNews extends StatelessWidget {
   /// Título do grupo de notícias sugeridas
   final String title;
 
-  /// Lista de notícias para ser mostradas
-  final List<dynamic> data;
-
   /// Quantidade máxima de notícia que deverá ser mostrada
   final int maxNewsShow;
 
   /// Evento disparado quando usuário solicita ocultar o componente da visualização
   final VoidCallback? onDontShowMe;
 
+  final Future<List<dynamic>> future;
+
   const BlogSuggestedNews({
     required this.title,
-    required this.data,
+    required this.future,
     this.maxNewsShow = 4,
     this.onDontShowMe,
   });
@@ -50,10 +49,21 @@ class BlogSuggestedNews extends StatelessWidget {
               ),
             ]),
           ),
-          BlogSuggestedNewsList(
-            data: data,
-            maxNewsShow: maxNewsShow,
-          )
+          FutureBuilder(
+            future: future,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                return BlogSuggestedNewsList(
+                  data: snapshot.data,
+                  maxNewsShow: maxNewsShow,
+                );
+              } else {
+                return CircularProgressIndicator(
+                  color: Colors.lightGreenAccent,
+                );
+              }
+            },
+          ),
         ],
       ),
     );
