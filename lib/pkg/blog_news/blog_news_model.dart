@@ -5,6 +5,9 @@ class BlogNewsModel {
   //Descrição
   String description = '';
 
+  //Grupo
+  String group = '';
+
   //Imagem
   String image = '';
 
@@ -18,8 +21,9 @@ class BlogNewsModel {
     return {
       "id": id,
       "description": description,
-      "link": link,
+      "group": group,
       "image": image,
+      "link": link,
       "title": title,
     };
   }
@@ -32,15 +36,23 @@ class BlogNewsModel {
       if (value['description'] != null) {
         description = value['description'];
       }
-      if (value['link'] != null) {
-        link = value['link'];
+      if (value['group'] != null) {
+        group = value['group'];
       }
       if (value['image'] != null) {
         image = value['image'];
+      }
+      if (value['link'] != null) {
+        link = value['link'];
       }
       if (value['title'] != null) {
         title = value['title'];
       }
     }
+  }
+
+  @override
+  String toString() {
+    return 'Instance of BlogNewsModel(_id:$id, description:$description, group:$group, image:$image, link:$link, title:$title)';
   }
 }
